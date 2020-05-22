@@ -8,6 +8,7 @@ int count;
 void Reinas(int,int,int*);
 void resultados(int,int*);
 int esvalida(int,int,int*);
+void grafico(void);
 int main()
 {
     int *tablero;
@@ -66,10 +67,8 @@ void Reinas(int row,int n, int* b)
                         /*Ha conseguido colocar todo un tablero*/
                          (*fresultado)(n,b); /*Llama con punteros
                          a la función  que imprime el tablero*/
-                         initwindow(500,590);
-                            /*inicia pantalla para mostrar los tableros en modo gráfico*/
-                            getch();
-                        closegraph();
+                         grafico();
+
                 } else {
                         /*aun faltan filas del tablero en donde poner reinas*/
                         Reinas(row+1,n, b);
@@ -79,6 +78,28 @@ void Reinas(int row,int n, int* b)
 
 
  	}
+}
+void grafico (){
+               initwindow(700,700);
+                            setbkcolor(2);
+                            cleardevice();
+                            /*inicia pantalla para mostrar los tableros en modo gráfico*/
+
+                            rectangle(70,70,610,610);
+                            int k=70;
+                            for(int i=1;i<=8;i++){
+
+                                line(k+(i*60),k,k+(i*60),610);
+                            }
+
+                            for(int i=1;i<=8;i++){
+
+                                line(k,k+(i*60),610,k+(i*60));
+                            }
+
+
+                            getch();
+                        closegraph();
 }
 int esvalida(int row,int column, int* b)
 {

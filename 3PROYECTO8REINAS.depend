@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1590176528 source:c:\users\yassirprograma\desktop\fdp\pruebas\3proyecto8reinas\main.cpp
+	<stdio.h>
+	<math.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	<winbgim.h>
+
