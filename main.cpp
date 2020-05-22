@@ -8,6 +8,7 @@ int count;
 void Reinas(int,int,int*);
 void resultados(int,int*);
 int esvalida(int,int,int*);
+void tablaG(void);
 int main()
 {
     int *tablero;
@@ -33,6 +34,10 @@ int main()
 
 	freinas = &Reinas; /*Apunto a la dirección de memoria de la función
 	 que calcula e imprime tableros */
+
+    initwindow(700,700); //iniciamos la pantalla grafica
+    setbkcolor(8);
+    cleardevice();
 
  	(*freinas)(1, 8, tablero);/*Mando a llamar mi función mediante un apuntador*/
 
@@ -64,12 +69,12 @@ void Reinas(int row,int n, int* b)
                 if(row==n) /*Pregunta si ya llenó el tablero*/
                 {
                         /*Ha conseguido colocar todo un tablero*/
+                        tablaG();
                          (*fresultado)(n,b); /*Llama con punteros
                          a la función  que imprime el tablero*/
-                         initwindow(500,590);
-                            /*inicia pantalla para mostrar los tableros en modo gráfico*/
-                            getch();
-                        closegraph();
+                        getch();
+                        cleardevice();
+
                 } else {
                         /*aun faltan filas del tablero en donde poner reinas*/
                         Reinas(row+1,n, b);
@@ -103,7 +108,31 @@ int esvalida(int row,int column, int* b)
  return 1;
 
 }
+void tablaG(){
 
+	rectangle(70,70,550,550);
+    int k=70;
+    char imp[10], imp2[10];
+
+    for(int i=1;i<=7;i++){
+
+        line(k+(i*60),k,k+(i*60),550);
+    }
+
+    for(int i=1;i<=7;i++){
+
+        line(70,k+(i*60),550,k+(i*60));
+    }
+   	for(int i=1; i<=8; i++){
+   		sprintf(imp,"%i",i);
+   		outtextxy(40+(60*i),50,imp);
+	   }
+	for(int i=1; i<=8; i++){
+		sprintf(imp2,"%i",i);
+		outtextxy(50,40+(60*i), imp2);
+	}
+
+}
 void resultados(int n, int* b)
 { //función que imprime el resultado
      printf("\n\nSolucion %d:\n\n",++count);
