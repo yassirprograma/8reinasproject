@@ -4,6 +4,7 @@
 #include <string.h>
 #include <conio.h>
 #include <winbgim.h>
+int count;
 void Reinas(int,int,int*);
 void resultados(int,int*);
 int esvalida(int,int,int*);
@@ -63,7 +64,8 @@ void Reinas(int row,int n, int* b)
                 if(row==n) /*Pregunta si ya llenó el tablero*/
                 {
                         /*Ha conseguido colocar todo un tablero*/
-
+                         (*fresultado)(n,b); /*Llama con punteros
+                         a la función  que imprime el tablero*/
 
                 } else {
                         /*aun faltan filas del tablero en donde poner reinas*/
@@ -101,6 +103,22 @@ int esvalida(int row,int column, int* b)
 
 void resultados(int n, int* b)
 { //función que imprime el resultado
+     printf("\n\nSolucion %d:\n\n",++count);
 
+    for(int i=1;i<=n;++i) printf("\t%d",i);//numeracion de columnas
+
+    for(int i=1;i<=n;++i)
+    {
+        printf("\n\n%d",i); //numeracion de filas
+
+        for(int j=1;j<=n;++j) //
+        {
+            if(*(b+i)==j)
+                printf("\tQ"); /*coordenada con reina*/
+            else
+                printf("\t."); /*coordenada sin reina*/
+        }
+
+    }
 }
 
