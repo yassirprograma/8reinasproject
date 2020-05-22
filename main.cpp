@@ -4,7 +4,7 @@
 #include <string.h>
 #include <conio.h>
 #include <winbgim.h>
-
+void Reinas(int,int,int*);
 int main()
 {
     int *tablero;
@@ -24,5 +24,22 @@ int main()
 
 	system("pause");
 
+
+    void(*freinas)(int, int, int*); /*Preparo una variable tipo
+    apuntador a función*/
+
+	freinas = &Reinas; /*Apunto a la dirección de memoria de la función
+	 que calcula e imprime tableros */
+
+ 	(*freinas)(1, 8, tablero);/*Mando a llamar mi función mediante un apuntador*/
+
+ 	free(tablero); /*LIBERA EL ESPACIO DE MEMORIA USADO*/
+
     return 0;
+}
+void Reinas(int row,int n, int* b)
+{ /*Recibe como parámetro la fila en que colocará a la reina,
+    el tamanyo del tablero y pasa por referencia la dirección de board
+  */
+
 }
