@@ -92,8 +92,9 @@ void Reinas(int row,int n, int* b)
 void grafico (){
 
 
-        initwindow(700,700);
+          if(keep)initwindow(700,700);
 
+                keep=0;
                 setbkcolor(2);
                  cleardevice();
                             /*inicia pantalla para mostrar los tableros en modo gráfico*/
@@ -102,7 +103,7 @@ void grafico (){
 
 
                 getch();
-          closegraph();
+
 }
 void tablaG(){
 
