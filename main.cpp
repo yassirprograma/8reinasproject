@@ -6,6 +6,7 @@
 #include <winbgim.h>
 void Reinas(int,int,int*);
 void resultados(int,int*);
+int esvalida(int,int,int*);
 int main()
 {
     int *tablero;
@@ -52,10 +53,25 @@ void Reinas(int row,int n, int* b)
  	{
  	    /*Prueba con todas las columnas de la fila actual, es decir (row,col)
           buscando colocar la reina en algun lugar valido       */
+          if(esvalida(row,col,b)) /*si ninguna la ataca*/
+  		  {     /*Manda a llamar a una función que devuelve
+                1 si en esa coordenada ninguna reina puesta
+                antes la ataca, 0 si alguna la ataca
+                */
 
+
+
+
+          }
 
 
  	}
+}
+int esvalida(int row,int column, int* b)
+{
+//Determina si la reina no está en peligro
+
+
 }
 
 void resultados(int n, int* b)
