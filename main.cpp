@@ -4,11 +4,15 @@
 #include <string.h>
 #include <conio.h>
 #include <winbgim.h>
-int count;
+#include <bits/stdc++.h>
+
+int cont;
+bool keep=TRUE;
 void Reinas(int,int,int*);
 void resultados(int,int*);
 int esvalida(int,int,int*);
 void grafico(void);
+void tablaG(void);
 int main()
 {
     int *tablero;
@@ -39,6 +43,9 @@ int main()
 
  	free(tablero); /*LIBERA EL ESPACIO DE MEMORIA USADO*/
 
+
+
+
     return 0;
 }
 void Reinas(int row,int n, int* b)
@@ -65,9 +72,12 @@ void Reinas(int row,int n, int* b)
                 if(row==n) /*Pregunta si ya llenó el tablero*/
                 {
                         /*Ha conseguido colocar todo un tablero*/
+
+
                          (*fresultado)(n,b); /*Llama con punteros
                          a la función  que imprime el tablero*/
                          grafico();
+
 
                 } else {
                         /*aun faltan filas del tablero en donde poner reinas*/
@@ -80,26 +90,43 @@ void Reinas(int row,int n, int* b)
  	}
 }
 void grafico (){
-               initwindow(700,700);
-                            setbkcolor(2);
-                            cleardevice();
+
+
+        initwindow(700,700);
+
+                setbkcolor(2);
+                 cleardevice();
                             /*inicia pantalla para mostrar los tableros en modo gráfico*/
-
-                            rectangle(70,70,610,610);
-                            int k=70;
-                            for(int i=1;i<=8;i++){
-
-                                line(k+(i*60),k,k+(i*60),610);
-                            }
-
-                            for(int i=1;i<=8;i++){
-
-                                line(k,k+(i*60),610,k+(i*60));
-                            }
+                 tablaG();
 
 
-                            getch();
-                        closegraph();
+
+                getch();
+          closegraph();
+}
+void tablaG(){
+
+	rectangle(70,70,550,550);
+    int k=70;
+    char imp[10], imp2[10];
+
+    for(int i=1;i<=7;i++){
+
+        line(k+(i*60),k,k+(i*60),550);
+    }
+
+    for(int i=1;i<=7;i++){
+
+        line(70,k+(i*60),550,k+(i*60));
+    }
+   	for(int i=1; i<=8; i++){
+   		sprintf(imp,"%i",i);
+   		outtextxy(40+(60*i),50,imp);
+	   }
+	for(int i=1; i<=8; i++){
+		sprintf(imp2,"%i",i);
+		outtextxy(50,40+(60*i), imp2);
+	}
 }
 int esvalida(int row,int column, int* b)
 {
@@ -127,7 +154,7 @@ int esvalida(int row,int column, int* b)
 
 void resultados(int n, int* b)
 { //función que imprime el resultado
-     printf("\n\nSolucion %d:\n\n",++count);
+     printf("\n\nSolucion %d:\n\n",++cont);
 
     for(int i=1;i<=n;++i) printf("\t%d",i);//numeracion de columnas
 
