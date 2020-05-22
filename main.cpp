@@ -5,6 +5,7 @@
 #include <conio.h>
 #include <winbgim.h>
 void Reinas(int,int,int*);
+void resultados(int,int*);
 int main()
 {
     int *tablero;
@@ -41,5 +42,24 @@ void Reinas(int row,int n, int* b)
 { /*Recibe como parámetro la fila en que colocará a la reina,
     el tamanyo del tablero y pasa por referencia la dirección de board
   */
+    void(*fresultado)(int, int*); /*Prepara una variable tipo
+    apuntador a función*/
+
+  	fresultado = &resultados; /*Apunto a la dirección de memoria de la función
+  	que se utilizará posteriormente*/
+
+	for(int col=1;col<=n;++col)
+ 	{
+ 	    /*Prueba con todas las columnas de la fila actual, es decir (row,col)
+          buscando colocar la reina en algun lugar valido       */
+
+
+
+ 	}
+}
+
+void resultados(int n, int* b)
+{ //función que imprime el resultado
 
 }
+
