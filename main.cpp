@@ -58,9 +58,17 @@ void Reinas(int row,int n, int* b)
                 1 si en esa coordenada ninguna reina puesta
                 antes la ataca, 0 si alguna la ataca
                 */
+                *(b+row) = col; //No hay conflicto, coloca reina
+
+                if(row==n) /*Pregunta si ya llenó el tablero*/
+                {
+                        /*Ha conseguido colocar todo un tablero*/
 
 
-
+                } else {
+                        /*aun faltan filas del tablero en donde poner reinas*/
+                        Reinas(row+1,n, b);
+                }
 
           }
 
