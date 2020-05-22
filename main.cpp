@@ -69,8 +69,25 @@ void Reinas(int row,int n, int* b)
 }
 int esvalida(int row,int column, int* b)
 {
-//Determina si la reina no está en peligro
+    //Determina si la reina no está en peligro
+ int i; /* iterador de las posiciones de board*/
+ for(i=1;i<=row-1;++i)
+ {
+	  if(*(b+i)==column){
+	   /* en esa i-esima  columna ya se ha puesto una reina*/
+            return 0;
+	  }else{
 
+        if(abs(*(b+i)-column)==abs(i-row)){
+            /*hay una reina que la ataca en diagonal*/
+            return 0;
+        }
+
+	  }
+ }
+ /*ya ha preguntado con todas las reinas puestas antes,
+ y ha encontrado un lugar para colocarla*/
+ return 1;
 
 }
 
