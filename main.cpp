@@ -9,6 +9,7 @@ void Reinas(int,int,int*);
 void resultados(int,int*);
 int esvalida(int,int,int*);
 void tablaG(void);
+void figura(int, int);
 int main()
 {
     int *tablero;
@@ -145,12 +146,26 @@ void resultados(int n, int* b)
 
         for(int j=1;j<=n;++j) //
         {
-            if(*(b+i)==j)
+            if(*(b+i)==j){
+                figura(j,i);
                 printf("\tQ"); /*coordenada con reina*/
-            else
+            }
+
+            else{
                 printf("\t."); /*coordenada sin reina*/
+            }
+
         }
 
     }
 }
-
+void figura(int a, int p){
+      int x=100+((a-1)*60), y=100+((p-1)*60);
+ 	line(x-20,y+20,x+20,y+20); //horizontal
+	line(x-20,y+20,x-20,y-20);//linea izquierda vert
+      line(x+20,y+20,x+20,y-20); //linea derecha vert
+      line(x-20,y-20,x-10,y);//linea diagonal izquierda
+      line(x+20,y-20,x+10,y); //linea diagonal derecha
+      line(x-10,y,x,y-20); //diagonalcenizq
+      line(x+10,y,x,y-20);//diagonal al centro derecha
+}
