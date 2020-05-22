@@ -66,7 +66,10 @@ void Reinas(int row,int n, int* b)
                         /*Ha conseguido colocar todo un tablero*/
                          (*fresultado)(n,b); /*Llama con punteros
                          a la función  que imprime el tablero*/
-
+                         initwindow(500,590);
+                            /*inicia pantalla para mostrar los tableros en modo gráfico*/
+                            getch();
+                        closegraph();
                 } else {
                         /*aun faltan filas del tablero en donde poner reinas*/
                         Reinas(row+1,n, b);
