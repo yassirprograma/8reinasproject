@@ -16,7 +16,7 @@ int main()
 
 	/*vector dinámico que guarda la solución
 	 ( numero de columna en la que está la reina ) :*/
-	tablero = (int*)malloc(sizeof(int));
+	tablero = (int*)malloc(sizeof(int)*20);
 
 	if(tablero==NULL){
             /*NO PUDO ASIGNAR ESPACIO*/
@@ -70,11 +70,11 @@ void Reinas(int row,int n, int* b)
                 if(row==n) /*Pregunta si ya llenó el tablero*/
                 {
                         /*Ha conseguido colocar todo un tablero*/
-                        tablaG();
+                             tablaG();
                          (*fresultado)(n,b); /*Llama con punteros
                          a la función  que imprime el tablero*/
-                        getch();
-                        cleardevice();
+                         getch();
+                         cleardevice();
 
                 } else {
                         /*aun faltan filas del tablero en donde poner reinas*/
