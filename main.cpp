@@ -3,8 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
-#include <winbgim.h>
+#include <graphics.h>
+
 int count;
+char ask;
+char itab[10];
+FILE *soluciones (fopen("soluciones.txt", "wt")); //genera un archivo de texto
 void Reinas(int,int,int*);
 void resultados(int,int*);
 int esvalida(int,int,int*);
@@ -12,12 +16,20 @@ void tablaG(void);
 void figura(int, int);
 int main()
 {
-    int *tablero;
+    puts("Presione S si desea iniciar un nuevo archivo con soluciones");
+    scanf("%c",&ask); // pregunta si desea generar un
+    if(ask=='s' || ask=='S'){
+        fflush(soluciones); //reiniciamos nuestro archivo
+    }
 
-	/*vector dinámico que guarda la solución
-	 ( numero de columna en la que está la reina ) :*/
+    if(soluciones==NULL){
+        perror("ERROR EN LA APERTURA DEL ARCHIVO");
+    }
+
+    int *tablero;  /*vector dinámico que guarda la solución
+    ( numero de columna en la que está la reina ) :*/
+
 	tablero = (int*)malloc(sizeof(int)*20);
-
 	if(tablero==NULL){
             /*NO PUDO ASIGNAR ESPACIO*/
             printf("\n No se pudo reservar espacio en memoria memoria \n\n");
@@ -43,7 +55,7 @@ int main()
  	(*freinas)(1, 8, tablero);/*Mando a llamar mi función mediante un apuntador*/
 
  	free(tablero); /*LIBERA EL ESPACIO DE MEMORIA USADO*/
-
+    fclose(soluciones);
     return 0;
 }
 void Reinas(int row,int n, int* b)
@@ -133,34 +145,56 @@ void tablaG(){
 		outtextxy(50,40+(60*i), imp2);
 	}
 
+
 }
 void resultados(int n, int* b)
 { //función que imprime el resultado
-     printf("\n\nSolucion %d:\n\n",++count);
 
-    for(int i=1;i<=n;++i) printf("\t%d",i);//numeracion de columnas
+    printf("\n\nSolucion %d:\n\n",++count); //cuenta en consola
+    fprintf(soluciones,"\n\n Solucion %d :\n\n",count); //cuenta en archivo
+    //cuenta en grafico:
+    sprintf(itab,"%d",count); //conversion para modo grafico
+    settextstyle(3,0,3);
+    outtextxy(250,10,"Tablero numero:");
+    outtextxy(450,10,itab);
+
+    for(int i=1;i<=n;++i) {
+        printf("\t%d",i);//numeracion de columnas
+        fprintf(soluciones,"\t%d",i);
+    }
 
     for(int i=1;i<=n;++i)
     {
         printf("\n\n%d",i); //numeracion de filas
-
+        fprintf(soluciones,"\n\n%d",i);
         for(int j=1;j<=n;++j) //
         {
             if(*(b+i)==j){
-                figura(j,i);
-                printf("\tQ"); /*coordenada con reina*/
+                figura(j,i); //coloca reina en grafico
+                printf("\tQ"); /*coordenada con reina en consola*/
+                fputs("\tQ",soluciones);
             }
 
             else{
-                printf("\t."); /*coordenada sin reina*/
+                printf("\t#"); /*coordenada sin reina*/
+                fputs("\t#",soluciones);
             }
 
         }
 
     }
+
+    if(count==92){
+        cleardevice();
+        outtextxy(100,300,"Listo!, el archivo generado de las soluciones ");
+        outtextxy(100,330,"se encuentra en la carpeta de este proyecto");
+        getch();
+    }
+
 }
 void figura(int a, int p){
-      int x=100+((a-1)*60), y=100+((p-1)*60);
+    setcolor(14);
+    int x=100+((a-1)*60), y=100+((p-1)*60);
  	line(x-20,y+20,x+20,y+20); //horizontal
 	line(x-20,y+20,x-20,y-20);//linea izquierda vert
       line(x+20,y+20,x+20,y-20); //linea derecha vert
@@ -168,4 +202,10 @@ void figura(int a, int p){
       line(x+20,y-20,x+10,y); //linea diagonal derecha
       line(x-10,y,x,y-20); //diagonalcenizq
       line(x+10,y,x,y-20);//diagonal al centro derecha
+       setcolor(4);
+      circle(x,y-24,4);
+      circle(x-20,y-24,4);
+      circle(x+20,y-24,4);
+      setcolor(15);
+      circle(x,y,4);
 }
