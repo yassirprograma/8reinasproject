@@ -17,8 +17,9 @@ void figura(int, int);
 int main()
 {
     puts("Presione S si desea iniciar un nuevo archivo con soluciones");
-    scanf("%c",&ask); // pregunta si desea generar un
-    if(ask=='s' || ask=='S'){
+    scanf("%c",&ask);
+
+    if(ask=='s' || ask=='S'){ // pregunta si desea generar un archivo nuevo
         fflush(soluciones); //reiniciamos nuestro archivo
     }
 
@@ -30,16 +31,16 @@ int main()
     ( numero de columna en la que está la reina ) :*/
 
 	tablero = (int*)malloc(sizeof(int)*20);
+
 	if(tablero==NULL){
             /*NO PUDO ASIGNAR ESPACIO*/
-            printf("\n No se pudo reservar espacio en memoria memoria \n\n");
-	}
-	else{
+           printf("\n No se pudo reservar espacio en memoria memoria \n\n");
+	}else{
             /*HUBO ESPACIO SUFICIENTE*/
-            printf("\n Espacio de memoria reservado correctamente \n\n");
+           // printf("\n Espacio de memoria reservado correctamente \n\n");
 	}
 
-	system("pause");
+	// system("pause");
 
 
     void(*freinas)(int, int, int*); /*Preparo una variable tipo
@@ -85,6 +86,7 @@ void Reinas(int row,int n, int* b)
                              tablaG();
                          (*fresultado)(n,b); /*Llama con punteros
                          a la función  que imprime el tablero*/
+                         outtextxy(100,600, "PRESIONE ESPACIO PARA CONTINUAR");
                          getch();
                          cleardevice();
 
@@ -197,15 +199,15 @@ void figura(int a, int p){
     int x=100+((a-1)*60), y=100+((p-1)*60);
  	line(x-20,y+20,x+20,y+20); //horizontal
 	line(x-20,y+20,x-20,y-20);//linea izquierda vert
-      line(x+20,y+20,x+20,y-20); //linea derecha vert
-      line(x-20,y-20,x-10,y);//linea diagonal izquierda
-      line(x+20,y-20,x+10,y); //linea diagonal derecha
-      line(x-10,y,x,y-20); //diagonalcenizq
-      line(x+10,y,x,y-20);//diagonal al centro derecha
-       setcolor(4);
-      circle(x,y-24,4);
-      circle(x-20,y-24,4);
-      circle(x+20,y-24,4);
-      setcolor(15);
-      circle(x,y,4);
+    line(x+20,y+20,x+20,y-20); //linea derecha vert
+    line(x-20,y-20,x-10,y);//linea diagonal izquierda
+    line(x+20,y-20,x+10,y); //linea diagonal derecha
+    line(x-10,y,x,y-20); //diagonalcenizq
+    line(x+10,y,x,y-20);//diagonal al centro derecha
+    setcolor(4);
+    circle(x,y-24,4);
+    circle(x-20,y-24,4);
+    circle(x+20,y-24,4);
+    setcolor(15);
+    circle(x,y,4);
 }
